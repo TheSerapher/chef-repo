@@ -1,0 +1,11 @@
+{
+  "groups": [
+    "sysadmin"
+  ],
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAjLS7AjTStdRxHK1eRIYe+fEsxxCQ2nUWRYJQvuuOk/fhRnrwOt+IrY486VpOBGM5s9Z/sz2SWV2OSegyErJOx0SeVTiNDF7galaDQeCxohteAIsymcfHStXQTwk51+iglZBczYz85SP8oogv6XPrMu7wCeerOSBazB3FRLfkLPE= General Accesss"
+  ],
+  "id": "sebastian",
+  "gid": "users",
+  "shell": "/bin/bash"
+}
