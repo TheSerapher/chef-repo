@@ -1,19 +1,14 @@
 {
-  "name": "base",
+  "name": "qmailtoaster",
   "description": "",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
   "override_attributes": {
-    "authorization": {
-      "sudo": {
-        "sudoers_defaults": ["!lecture,tty_tickets,!fqdn,!requiretty"]
-      }
-    }
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[base]"
+    "recipe[qmailtoaster]"
   ],
   "env_run_lists": {
   }

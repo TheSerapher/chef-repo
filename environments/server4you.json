@@ -1,6 +1,6 @@
 {
-  "name": "home",
-  "description": "Home Server environment",
+  "name": "server4you",
+  "description": "Server4You Server environment",
   "cookbook_versions": {
   },
   "json_class": "Chef::Environment",

@@ -12,3 +12,6 @@
 
 # git
 */.git/*
+
+# bundle
+*/bundle
