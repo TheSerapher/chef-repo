@@ -1,0 +1,19 @@
+{
+  "name": "mail-server",
+  "description": "Basic Mail Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        { "description": "Mail Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": "pop3,pop3s,imap,imaps,smtp,submission", "action": "ACCEPT" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

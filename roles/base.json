@@ -3,6 +3,11 @@
   "description": "",
   "json_class": "Chef::Role",
   "default_attributes": {
+    "shorewall": {
+      "rules": [
+         { "description": "Public PING", "source": "net",  "dest": "fw", "action": "Ping/ACCEPT" }
+      ]
+    }
   },
   "override_attributes": {
     "authorization": {

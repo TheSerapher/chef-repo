@@ -6,6 +6,31 @@
   "json_class": "Chef::Environment",
   "chef_type": "environment",
   "default_attributes": {
+    "shorewall": {
+      "default_interface_settings": {
+        "options": "tcpflags,routefilter,nosmurfs,dhcp"
+      },
+      "zone_hosts": {
+        "lan": "192.168.2.0/24"
+      },
+      "zone_interfaces": {
+        "lan": "eth0"
+      },
+      "zones": [
+        { "zone": "fw", "type": "firewall" },
+        { "zone": "lan", "type": "ipv4" }
+      ],
+      "rules": [
+        {
+        "description": "Incoming SSH from Local Network.",
+        "source": "lan",
+        "dest": "fw",
+        "proto": "tcp",
+        "dest_port": 22,
+        "action": "ACCEPT"
+      }
+      ]
+    },
     "chef_client": { "interval": 900, "splay": 120 },
     "authorization": {
       "sudo": {

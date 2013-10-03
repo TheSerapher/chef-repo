@@ -6,6 +6,33 @@
   "json_class": "Chef::Environment",
   "chef_type": "environment",
   "default_attributes": {
+    "shorewall": {
+      "default_interface_settings": {
+        "options": "tcpflags,routefilter,nosmurfs,dhcp"
+      },
+      "zone_interfaces": {
+        "net": "eth0",
+        "lan": "tun+"
+      },
+      "zones": [
+        { "zone": "fw", "type": "firewall" },
+        { "zone": "net", "type": "ipv4" },
+        { "zone": "lan", "type": "ipv4" }
+      ],
+      "rules": [
+        {
+        "description": "Incoming SSH from VPN Server.",
+        "source": "lan:$VPN_SERVER",
+        "dest": "fw",
+        "proto": "tcp",
+        "dest_port": 22,
+        "action": "ACCEPT"
+      }
+      ],
+      "tunnels": [
+        { "type": "openvpn", "zone": "net", "gateway": "", "gatewayzone": "" }
+      ]
+    },
     "chef_client": { "interval": 900, "splay": 120 },
     "authorization": {
       "sudo": {

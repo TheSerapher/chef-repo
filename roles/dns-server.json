@@ -1,0 +1,20 @@
+{
+  "name": "dns-server",
+  "description": "Basic DNS Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        { "description": "DNS Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": 53,"action": "ACCEPT" },
+        { "description": "DNS Services", "source": "net", "dest": "fw", "proto": "udp", "dest_port": 53,"action": "ACCEPT" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "vpn-server",
+  "description": "Basic VPN Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "ip_forwarding": "On",
+      "zone_interfaces": {
+        "vpn": "tun+"
+      },
+      "zones": [
+        { "zone": "vpn", "type": "ipv4" },
+        { "zone": "vpn0:vpn", "type": "ipv4" },
+        { "zone": "vpn1:vpn", "type": "ipv4" },
+        { "zone": "vpn2:vpn", "type": "ipv4" }
+      ],
+      "rules": [
+        { "description": "OpenVPN",      "source": "lan",  "dest": "fw",   "proto": "udp", "dest_port": 1194,                "action": "ACCEPT" },
+        { "description": "DNS",          "source": "lan",  "dest": "fw",   "proto": "tcp", "dest_port": 53,                  "action": "ACCEPT" },
+        { "description": "DNS",          "source": "lan",  "dest": "fw",   "proto": "udp", "dest_port": 53,                  "action": "ACCEPT" },
+        { "description": "DNS",          "source": "vpn",  "dest": "fw",   "proto": "tcp", "dest_port": 53,                  "action": "ACCEPT" },
+        { "description": "DNS",          "source": "vpn",  "dest": "fw",   "proto": "udp", "dest_port": 53,                  "action": "ACCEPT" },
+        { "description": "SSH",          "source": "$FW",  "dest": "vpn1", "proto": "tcp", "dest_port": 22,                  "action": "ACCEPT" },
+        { "description": "SSH",          "source": "vpn2", "dest": "$FW",  "proto": "tcp", "dest_port": 22,                  "action": "ACCEPT" },
+        { "description": "SSH",          "source": "vpn2", "dest": "vpn1", "proto": "tcp", "dest_port": 22,                  "action": "ACCEPT" },
+        { "description": "SSH",          "source": "vpn2", "dest": "vpn2", "proto": "tcp", "dest_port": 22,                  "action": "ACCEPT" },
+        { "description": "Admin Access", "source": "vpn2", "dest": "$FW",  "proto": "tcp", "dest_port": "https,http,9091",   "action": "ACCEPT" }
+      ],
+      "tunnels": [
+        { "type": "openvpnserver:udp:1194", "zone": "vpn0", "gateway": "0.0.0.0/0", "gatewayzone": "" }
+      ]
+    }
+  },
+  "override_attributes": {
+    "shorewall": {
+      "hosts": [
+        { "zone": "vpn0", "hosts": "tun+:10.128.0.0/24" },
+        { "zone": "vpn1", "hosts": "tun+:10.128.1.0/24" },
+        { "zone": "vpn2", "hosts": "tun+:10.128.2.0/24" }
+      ]
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

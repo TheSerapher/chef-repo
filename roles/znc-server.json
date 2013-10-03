@@ -1,0 +1,19 @@
+{
+  "name": "znc-server",
+  "description": "Basic ZNC Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        { "description": "ZNC Service", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": 6767, "action": "ACCEPT" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

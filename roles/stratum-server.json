@@ -1,0 +1,19 @@
+{
+  "name": "stratum-server",
+  "description": "Basic Stratum Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        { "description": "Stratum Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": "3333,3334,3335,3336", "action": "ACCEPT" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

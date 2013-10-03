@@ -1,0 +1,39 @@
+{
+  "name": "vpn-client",
+  "description": "Basic VPN Client",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "params": {
+        "hosts": {
+          "VPN_SERVER": "10.128.0.1",
+          "VPN_ADMIN": "10.128.2.0/24"
+        }
+      },
+      "rules": [
+        { "description": "SSH", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": 22, "action": "ACCEPT" },
+        { "description": "SSH", "source": "lan:$VPN_ADMIN", "dest": "$FW", "proto": "tcp", "dest_port": 22, "action": "ACCEPT" },
+        { "description": "MySQL", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": "mysql", "action": "ACCEPT" },
+        { "description": "Web", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": "http,https", "action": "ACCEPT" },
+        { "description": "FTP", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": "ftp,ftp-data", "action": "ACCEPT" },
+        { "description": "Mail", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": "pop3,pop3s,imap,imaps,smtp,submission", "action": "ACCEPT" },
+        { "description": "Amanda Backup", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": 10080, "action": "ACCEPT" },
+        { "description": "Monitor Check_MK", "source": "lan:$VPN_SERVER", "dest": "$FW", "proto": "tcp", "dest_port": 6556, "action": "ACCEPT" },
+        { "description": "Ping to FW from VPN", "source": "lan:$VPN_SERVER", "dest": "$FW", "action": "Ping/ACCEPT" },
+        { "description": "Ping to VPN from FW", "source": "$FW", "dest": "lan:$VPN_SERVER", "action": "Ping/ACCEPT" },
+        { "description": "DNS from FW to VPN", "source": "$FW", "dest": "lan:$VPN_SERVER", "proto": "tcp", "dest_port": 53, "action": "ACCEPT" },
+        { "description": "DNS from VPN to FW", "source": "$FW", "dest": "lan:$VPN_SERVER", "proto": "udp", "dest_port": 53, "action": "ACCEPT" }
+      ],
+      "tunnels": [
+        { "type": "openvpn", "zone": "net", "gateway": "", "gatewayzone": "" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

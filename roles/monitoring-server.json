@@ -1,0 +1,26 @@
+{
+  "name": "monitoring-server",
+  "description": "Basic Monitoring over VPN Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        { "description": "Monitoring Wesbite",     "source": "lan", "dest": "$FW",   "proto": "tcp", "dest_port": "http,https",                            "action": "ACCEPT" },
+        { "description": "Monitoring Webservices", "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "http,https,8080",                       "action": "ACCEPT" },
+        { "description": "Monitoring FTP",         "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "ftp,ftp-data",                          "action": "ACCEPT" },
+        { "description": "Monitoring Mail",        "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "pop3,pop3s,imap,imaps,smtp,submission", "action": "ACCEPT" },
+        { "description": "Monitoring DNS",         "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "53",                                    "action": "ACCEPT" },
+        { "description": "Monitoring Check_MK",    "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "6556",                                  "action": "ACCEPT" },
+        { "description": "Monitoring",             "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "10080",                                 "action": "ACCEPT" },
+        { "description": "Monitoring MySQL",       "source": "$FW", "dest": "vpn1",  "proto": "tcp", "dest_port": "mysql",                                 "action": "ACCEPT" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}

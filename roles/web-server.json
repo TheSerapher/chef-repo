@@ -1,0 +1,19 @@
+{
+  "name": "web-server",
+  "description": "Basic Web Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        { "description": "Web Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": "http,https", "action": "ACCEPT" }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}
