@@ -5,7 +5,8 @@
   "default_attributes": {
     "shorewall": {
       "rules": [
-        { "description": "DNS Services", "source": "net", "dest": "fw", "proto": "udp", "dest_port": 53,"action": "ACCEPT" }
+        { "description": "DNS Services", "source": "net", "dest": "fw", "proto": "udp", "dest_port": 53,"action": "ACCEPT" },
+        { "description": "DNS Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": 53,"action": "ACCEPT" }
       ]
     }
   },
