@@ -6,6 +6,11 @@
   "json_class": "Chef::Environment",
   "chef_type": "environment",
   "default_attributes": {
+    "openssh": {
+      "server": {
+        "Subsystem": "sftp    /usr/libexec/openssh/sftp-server"
+      }
+    },
     "shorewall": {
       "default_interface_settings": {
         "options": "tcpflags,routefilter,nosmurfs,dhcp"
@@ -27,7 +32,8 @@
         "proto": "tcp",
         "dest_port": 22,
         "action": "ACCEPT"
-      }
+      },
+      { "description": "Public PING", "source": "net",  "dest": "fw", "action": "Ping/ACCEPT" }
       ],
       "tunnels": [
         { "type": "openvpn", "zone": "net", "gateway": "", "gatewayzone": "" }
