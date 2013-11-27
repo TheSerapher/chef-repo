@@ -38,6 +38,22 @@
         "action": "ACCEPT"
       },
       {
+        "description": "Incoming Microsoft-DS (Samba) from Local Network.",
+        "source": "lan",
+        "dest": "fw",
+        "proto": "tcp",
+        "dest_port": 445,
+        "action": "ACCEPT"
+      },
+      {
+        "description": "Incoming Samba from Local Network.",
+        "source": "lan",
+        "dest": "fw",
+        "proto": "tcp",
+        "dest_port": "135:139",
+        "action": "ACCEPT"
+      },
+      {
         "description": "Incoming NFS from Local Network.",
         "source": "lan",
         "dest": "fw",
