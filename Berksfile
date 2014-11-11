@@ -1,4 +1,4 @@
-site :opscode
+source "https://api.berkshelf.com"
 
 cookbook 'apache2'
 cookbook 'apt'
@@ -27,7 +27,7 @@ cookbook 'sudo'
 cookbook 'suphp',         :git => 'git@github.com:TheSerapher/chef-suphp.git'
 cookbook 'up2date',       :git => 'git@github.com:TheSerapher/chef-up2date.git'
 cookbook 'users'
-cookbook 'vsftpd'
+cookbook 'vsftpd',        :git => 'git@github.com:TheSerapher/chef-vsftpd'
 cookbook 'windows'
 cookbook 'xfs'
 cookbook 'xml'
