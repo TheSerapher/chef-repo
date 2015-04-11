@@ -3,10 +3,19 @@
   "description": "Basic Web Server",
   "json_class": "Chef::Role",
   "default_attributes": {
-    "apache": { "default_site_enabled": true },
+    "apache": {
+      "default_site_enabled": true
+    },
     "shorewall": {
       "rules": [
-        { "description": "Web Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": "http,https", "action": "ACCEPT" }
+        {
+          "description": "Web Services",
+          "source": "net",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": "http,https",
+          "action": "ACCEPT"
+        }
       ]
     }
   },

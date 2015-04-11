@@ -1,0 +1,67 @@
+{
+  "name": "netboot-server",
+  "description": "Basic Netboot Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        {
+          "description": "TFTP Services",
+          "source": "lan",
+          "dest": "$FW",
+          "proto": "tcp,udp",
+          "dest_port": "tftp",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "NFS Services",
+          "source": "lan",
+          "dest": "$FW",
+          "proto": "tcp,udp",
+          "dest_port": "2049",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "NFS Services",
+          "source": "lan",
+          "dest": "$FW",
+          "proto": "tcp,udp",
+          "dest_port": "892",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "NFS Services",
+          "source": "lan",
+          "dest": "$FW",
+          "proto": "tcp",
+          "dest_port": "32803",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "NFS Services",
+          "source": "lan",
+          "dest": "$FW",
+          "proto": "udp",
+          "dest_port": "32769",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "NFS Services",
+          "source": "lan",
+          "dest": "$FW",
+          "proto": "tcp,udp",
+          "dest_port": "662",
+          "action": "ACCEPT"
+        }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+
+  ],
+  "env_run_lists": {
+  }
+}

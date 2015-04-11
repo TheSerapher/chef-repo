@@ -5,7 +5,14 @@
   "default_attributes": {
     "shorewall": {
       "rules": [
-        { "description": "Mail Services", "source": "net", "dest": "fw", "proto": "tcp", "dest_port": "pop3,pop3s,imap,imaps,smtp,submission", "action": "ACCEPT" }
+        {
+          "description": "Mail Services",
+          "source": "net",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": "pop3,pop3s,imap,imaps,smtp,submission",
+          "action": "ACCEPT"
+        }
       ]
     }
   },
@@ -13,6 +20,7 @@
   },
   "chef_type": "role",
   "run_list": [
+
   ],
   "env_run_lists": {
   }

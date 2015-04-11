@@ -1,16 +1,16 @@
 {
-  "name": "ftp-server",
-  "description": "Basic FTP Server",
+  "name": "time-capsule",
+  "description": "",
   "json_class": "Chef::Role",
   "default_attributes": {
     "shorewall": {
       "rules": [
         {
-          "description": "FTP Services",
-          "source": "net",
-          "dest": "$FW",
-          "proto": "tcp",
-          "dest_port": "ftp,ftp-data",
+          "description": "Time Capsule",
+          "source": "lan",
+          "dest": "fw",
+          "proto": "tcp,udp",
+          "dest_port": "548,5353,5354",
           "action": "ACCEPT"
         }
       ]
@@ -20,7 +20,7 @@
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[vsftpd]"
+
   ],
   "env_run_lists": {
   }

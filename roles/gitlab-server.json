@@ -1,24 +1,27 @@
 {
-  "name": "dns-server",
-  "description": "Basic DNS Server",
+  "name": "gitlab-server",
+  "description": "Basic Gitlab Server",
   "json_class": "Chef::Role",
   "default_attributes": {
+    "apache": {
+      "default_site_enabled": true
+    },
     "shorewall": {
       "rules": [
         {
-          "description": "DNS Services",
-          "source": "net",
-          "dest": "fw",
-          "proto": "udp",
-          "dest_port": 53,
-          "action": "ACCEPT"
-        },
-        {
-          "description": "DNS Services",
+          "description": "Gitlab Services",
           "source": "net",
           "dest": "fw",
           "proto": "tcp",
-          "dest_port": 53,
+          "dest_port": "8443",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "Gitlab SSH",
+          "source": "net",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": "22",
           "action": "ACCEPT"
         }
       ]
