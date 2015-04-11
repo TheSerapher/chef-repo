@@ -17,68 +17,65 @@
         "lan": "eth0"
       },
       "zones": [
-        { "zone": "fw", "type": "firewall" },
-        { "zone": "lan", "type": "ipv4" }
+        {
+          "zone": "fw",
+          "type": "firewall"
+        },
+        {
+          "zone": "lan",
+          "type": "ipv4"
+        }
       ],
       "rules": [
         {
-        "description": "Incoming SSH from Local Network.",
-        "source": "lan",
-        "dest": "fw",
-        "proto": "tcp",
-        "dest_port": 22,
-        "action": "ACCEPT"
-      },
-      {
-        "description": "Incoming NFS from Local Network.",
-        "source": "lan",
-        "dest": "fw",
-        "proto": "tcp",
-        "dest_port": 111,
-        "action": "ACCEPT"
-      },
-      {
-        "description": "Incoming Microsoft-DS (Samba) from Local Network.",
-        "source": "lan",
-        "dest": "fw",
-        "proto": "tcp",
-        "dest_port": 445,
-        "action": "ACCEPT"
-      },
-      {
-        "description": "Incoming Samba from Local Network.",
-        "source": "lan",
-        "dest": "fw",
-        "proto": "tcp",
-        "dest_port": "135:139",
-        "action": "ACCEPT"
-      },
-      {
-        "description": "Incoming NFS from Local Network.",
-        "source": "lan",
-        "dest": "fw",
-        "proto": "tcp",
-        "dest_port": 2049,
-        "action": "ACCEPT"
-      },
-      {
-        "description": "Incoming Transmission from Local Network.",
-        "source": "lan",
-        "dest": "fw",
-        "proto": "tcp",
-        "dest_port": 9091,
-        "action": "ACCEPT"
-      }
+          "description": "Incoming SSH from Local Network.",
+          "source": "lan",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": 22,
+          "action": "ACCEPT"
+        },
+        {
+          "description": "Incoming Microsoft-DS (Samba) from Local Network.",
+          "source": "lan",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": 445,
+          "action": "ACCEPT"
+        },
+        {
+          "description": "Incoming Samba from Local Network.",
+          "source": "lan",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": "135:139",
+          "action": "ACCEPT"
+        },
+        {
+          "description": "Incoming Transmission from Local Network.",
+          "source": "lan",
+          "dest": "fw",
+          "proto": "tcp",
+          "dest_port": 9091,
+          "action": "ACCEPT"
+        }
       ]
     },
-    "chef_client": { "interval": 900, "splay": 120 },
+    "chef_client": {
+      "interval": 900,
+      "splay": 120
+    },
     "authorization": {
       "sudo": {
-        "groups": ["sysadmin"],
+        "groups": [
+          "sysadmin"
+        ],
         "passwordless": "true"
       }
     },
-    "yum": { "repoforge_release": "0.5.3-1" }
+    "yum": {
+      "repoforge_release": "0.5.3-1"
+    }
   },
   "override_attributes": {
   }
